@@ -1,0 +1,10 @@
+.song-card:hover .play-overlay {
+          opacity: 1;
+        }
+        .lyrics-container::-webkit-scrollbar {
+          width: 6px;
+        }
+        .lyrics-container::-webkit-scrollbar-thumb {
+          background-color: #334155;
+          border-radius: 9999px;
+        }
