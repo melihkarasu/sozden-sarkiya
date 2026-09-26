@@ -156,6 +156,7 @@ let currentResults = [];
           emptyEl.classList.add('hidden');
           countEl.innerText = `${list.length} eşleşen şarkı listelendi`;
 
+          window.__renderedResults = list;
           grid.innerHTML = list.map((item, idx) => {
             const hasPreview = !!item.previewUrl;
             return `
@@ -166,7 +167,7 @@ let currentResults = [];
                     
                     ${hasPreview ? `
                       <div class="play-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity flex items-center justify-center">
-                        <button onclick="playAudioPreview('${item.previewUrl}', '${item.trackName.replace(/'/g, "\\\\'")}', '${item.artistName.replace(/'/g, "\\\\'")}')" class="w-12 h-12 rounded-full bg-pink-500 hover:bg-pink-400 text-white flex items-center justify-center shadow-lg transition transform hover:scale-110">
+                        <button onclick="playPreviewByContext('results', ${idx})"" class="w-12 h-12 rounded-full bg-pink-500 hover:bg-pink-400 text-white flex items-center justify-center shadow-lg transition transform hover:scale-110">
                           ▶
                         </button>
                       </div>
@@ -192,6 +193,23 @@ let currentResults = [];
         }
 
         // 3. Ses Önizleme Çalar (30s Audio Player)
+        // Baglam-tabanli guvenli onizleme (apostroflu sarki adlari HTML'i kiramaz)
+        function playPreviewByContext(context, idx) {
+          if (context === 'results') {
+            const item = (window.__renderedResults || [])[idx];
+            if (item && item.previewUrl) playAudioPreview(item.previewUrl, item.trackName, item.artistName);
+          } else if (context === 'playlist') {
+            const song = (window.__renderedPlaylist || [])[idx];
+            if (song && song.previewUrl) playAudioPreview(song.previewUrl, song.trackName, song.artistName);
+          }
+        }
+
+        function playPreviewFromCurrentSong() {
+          if (currentModalSong && currentModalSong.previewUrl) {
+            playAudioPreview(currentModalSong.previewUrl, currentModalSong.trackName, currentModalSong.artistName);
+          }
+        }
+
         function playAudioPreview(url, trackName, artistName) {
           const audio = document.getElementById('global-audio');
           const bar = document.getElementById('global-player-bar');
@@ -254,7 +272,7 @@ let currentResults = [];
           const prevBox = document.getElementById('modal-preview-btn-container');
           if (song.previewUrl) {
             prevBox.innerHTML = `
-              <button onclick="playAudioPreview('${song.previewUrl}', '${song.trackName.replace(/'/g, "\\\\'")}', '${song.artistName.replace(/'/g, "\\\\'")}')" class="px-3 py-2 rounded-xl bg-pink-500 hover:bg-pink-400 text-white text-xs font-semibold flex items-center gap-1.5 transition shadow">
+              <button onclick="playPreviewFromCurrentSong()"" class="px-3 py-2 rounded-xl bg-pink-500 hover:bg-pink-400 text-white text-xs font-semibold flex items-center gap-1.5 transition shadow">
                 <span>▶</span> 30s Dinle
               </button>
             `;
@@ -290,7 +308,7 @@ let currentResults = [];
         }
 
         // 5. Kayıtlı Çalma Listem (Playlist & LocalStorage)
-        const PLAYLIST_STORAGE_KEY = 'vibe_s…ylist';
+        const PLAYLIST_STORAGE_KEY = 'sarki_playlist_v1';
 
         function getSavedSongs() {
           try {
@@ -379,12 +397,13 @@ let currentResults = [];
           }
 
           empty.classList.add('hidden');
+          window.__renderedPlaylist = list;
           grid.innerHTML = list.map((song, idx) => `
             <div class="p-3 rounded-2xl bg-white border border-mistral-hairline hover:border-pink-500/40 transition flex items-center gap-3">
               <div class="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-white">
                 <img src="${song.cover}" class="w-full h-full object-cover">
                 ${song.previewUrl ? `
-                  <button onclick="playAudioPreview('${song.previewUrl}', '${song.trackName.replace(/'/g, "\\\\'")}', '${song.artistName.replace(/'/g, "\\\\'")}')" class="absolute inset-0 bg-black/40 hover:bg-black/20 flex items-center justify-center text-white text-xs transition">
+                  <button onclick="playPreviewByContext('playlist', ${idx})"" class="absolute inset-0 bg-black/40 hover:bg-black/20 flex items-center justify-center text-white text-xs transition">
                     ▶
                   </button>
                 ` : ''}
