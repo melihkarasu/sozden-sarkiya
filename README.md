@@ -9,7 +9,7 @@ LRCLIB & iTunes ile aklınızda kalan sözlerden şarkı tespiti, tam şarkı s�
 
 ## 🚀 Hızlı Başlangıç
 1. Bu repoyu klonlayın.
-2.  dosyasını tarayıcıda açın.
+2. `index.html` dosyasını tarayıcıda açın.
 
 
 
