@@ -167,7 +167,7 @@ let currentResults = [];
                     
                     ${hasPreview ? `
                       <div class="play-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity flex items-center justify-center">
-                        <button onclick="playPreviewByContext('results', ${idx})"" class="w-12 h-12 rounded-full bg-pink-500 hover:bg-pink-400 text-white flex items-center justify-center shadow-lg transition transform hover:scale-110">
+                        <button onclick="playPreviewByContext('results', ${idx})" class="w-12 h-12 rounded-full bg-pink-500 hover:bg-pink-400 text-white flex items-center justify-center shadow-lg transition transform hover:scale-110">
                           ▶
                         </button>
                       </div>
@@ -272,7 +272,7 @@ let currentResults = [];
           const prevBox = document.getElementById('modal-preview-btn-container');
           if (song.previewUrl) {
             prevBox.innerHTML = `
-              <button onclick="playPreviewFromCurrentSong()"" class="px-3 py-2 rounded-xl bg-pink-500 hover:bg-pink-400 text-white text-xs font-semibold flex items-center gap-1.5 transition shadow">
+              <button onclick="playPreviewFromCurrentSong()" class="px-3 py-2 rounded-xl bg-pink-500 hover:bg-pink-400 text-white text-xs font-semibold flex items-center gap-1.5 transition shadow">
                 <span>▶</span> 30s Dinle
               </button>
             `;
@@ -403,7 +403,7 @@ let currentResults = [];
               <div class="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-white">
                 <img src="${song.cover}" class="w-full h-full object-cover">
                 ${song.previewUrl ? `
-                  <button onclick="playPreviewByContext('playlist', ${idx})"" class="absolute inset-0 bg-black/40 hover:bg-black/20 flex items-center justify-center text-white text-xs transition">
+                  <button onclick="playPreviewByContext('playlist', ${idx})" class="absolute inset-0 bg-black/40 hover:bg-black/20 flex items-center justify-center text-white text-xs transition">
                     ▶
                   </button>
                 ` : ''}
