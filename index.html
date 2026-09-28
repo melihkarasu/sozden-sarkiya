@@ -61,6 +61,30 @@
         </div>
       </div>
 
+      <!-- KAYITLI ÇALMA LİSTEM (MY PLAYLIST) -->
+      <div class="mb-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <div>
+            <h2 class="text-2xl font-bold text-mistral-ink flex items-center gap-2">
+              <span>💿</span> Favori Çalma Listem & Şarkılarım
+            </h2>
+            <p class="text-mistral-slate text-xs mt-1">
+              Beğendiğiniz şarkıları tek tıkla koleksiyonunuza ekleyip dilediğiniz zaman dinleyebilir ve sözlerini açabilirsiniz.
+            </p>
+          </div>
+          <button onclick="clearAllSavedSongs()" class="text-xs text-rose-400 hover:underline px-3 py-1.5 rounded-lg border border-rose-500/20 hover:bg-rose-500/10 transition">
+            Listeyi Temizle
+          </button>
+        </div>
+
+        <div id="saved-songs-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <!-- JS ile favoriler -->
+        </div>
+        <div id="saved-songs-empty" class="p-8 text-center rounded-2xl bg-white border border-mistral-hairline text-mistral-stone text-xs">
+          Henüz çalma listenize bir parça eklemediniz. Şarkı kartlarındaki 🔖 simgesine tıklayarak favorilerinize ekleyebilirsiniz.
+        </div>
+      </div>
+
       <!-- ARAMA VE ŞARKI BULUCU KARTI -->
       <div class="p-6 rounded-2xl bg-white border border-mistral-hairline shadow-xl mb-8 space-y-4">
         <div>
@@ -121,30 +145,6 @@
       <div id="empty-state" class="hidden py-16 text-center text-mistral-slate text-sm">
         <div class="text-4xl mb-2">🎶</div>
         <span>Bu sözlerle eşleşen bir şarkı bulunamadı. Lütfen kelimeleri kontrol edip tekrar deneyin.</span>
-      </div>
-
-      <!-- KAYITLI ÇALMA LİSTEM (MY PLAYLIST) -->
-      <div class="mt-14 pt-8 border-t border-mistral-hairline">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-          <div>
-            <h2 class="text-2xl font-bold text-mistral-ink flex items-center gap-2">
-              <span>💿</span> Favori Çalma Listem & Şarkılarım
-            </h2>
-            <p class="text-mistral-slate text-xs mt-1">
-              Beğendiğiniz şarkıları tek tıkla koleksiyonunuza ekleyip dilediğiniz zaman dinleyebilir ve sözlerini açabilirsiniz.
-            </p>
-          </div>
-          <button onclick="clearAllSavedSongs()" class="text-xs text-rose-400 hover:underline px-3 py-1.5 rounded-lg border border-rose-500/20 hover:bg-rose-500/10 transition">
-            Listeyi Temizle
-          </button>
-        </div>
-
-        <div id="saved-songs-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-          <!-- JS ile favoriler -->
-        </div>
-        <div id="saved-songs-empty" class="p-8 text-center rounded-2xl bg-white border border-mistral-hairline text-mistral-stone text-xs">
-          Henüz çalma listenize bir parça eklemediniz. Şarkı kartlarındaki 🔖 simgesine tıklayarak favorilerinize ekleyebilirsiniz.
-        </div>
       </div>
 
       <!-- ŞARKI VE SÖZ DETAY MODALI -->
